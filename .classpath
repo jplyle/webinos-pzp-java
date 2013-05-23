@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test-src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="ext-lib/crypto-148/jars/bcpg-jdk15on-148.jar" sourcepath="ext-lib/crypto-148/src"/>
+	<classpathentry kind="lib" path="ext-lib/crypto-148/jars/bcpkix-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="ext-lib/crypto-148/jars/bcprov-ext-debug-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="ext-lib/crypto-148/jars/bcprov-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="ext-lib/crypto-148/jars/bctest-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="ext-lib/gson/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="ext-lib/Java-WebSocket/java_websocket.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

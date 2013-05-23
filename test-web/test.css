@@ -1,0 +1,63 @@
+
+html, body {
+	height: 100%;
+	background-color: Gray;
+}
+
+#output {
+  background-color: Gray;
+}
+
+p.logMessage {
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+  word-wrap:break-word;
+  color: blue;
+  padding-left: 10px;
+  padding-right: 10px;
+  display:block;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+}
+
+#result {
+  display:none;
+  background-color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.4em;
+}
+
+#result.successResult {
+  background-color: green;
+}
+
+#result.failureResult {
+  background-color: red;
+}
+
+p.logSuccess {
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+  word-wrap:break-word;
+  color: green;
+  padding-left: 10px;
+  padding-right: 10px;
+  display:block;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+}
+
+p.logFailure {
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+  word-wrap:break-word;
+  color: red;
+  padding-left: 10px;
+  padding-right: 10px;
+  display:block;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+}
