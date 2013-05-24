@@ -1,5 +1,7 @@
 package org.webinos.pzp.messaging;
 
+import com.google.gson.Gson;
+
 public class WebinosMessage {
 
 	private String to = null;
@@ -47,6 +49,11 @@ public class WebinosMessage {
 
 	public void setRespondTo(String resp_to) {
 		this.resp_to = resp_to;
+	}
+	
+	public String toJsonString() {
+		Gson gson = new Gson();
+		return gson.toJson(this);	
 	}
 
 }

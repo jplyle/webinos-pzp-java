@@ -3,7 +3,11 @@
  */
 package org.webinos.pzp.websocket;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.java_websocket.WebSocket;
+import org.java_websocket.server.WebSocketServer;
 import org.webinos.pzp.messaging.WebinosMessage;
 
 
@@ -15,6 +19,9 @@ import com.google.gson.JsonSyntaxException;
  *
  */
 public class WebSocketMessageFactory {
+	
+	private final static Logger LOGGER = Logger.getLogger(WebSocketMessageFactory.class.getName()); 
+	
 	@SuppressWarnings("rawtypes")
 	private static Class[] messageClasses = {
 		WebinosMessage.class
@@ -31,7 +38,7 @@ public class WebSocketMessageFactory {
 			if (!msg.isValid()) {
 				throw new InvalidMessageException("Invalid JSON message");
 			} else {
-				System.out.println("Found message: " + msg);
+				LOGGER.log(Level.INFO, "Found message: " + msg);
 			}
 			for (@SuppressWarnings("rawtypes") Class c : WebSocketMessageFactory.messageClasses) {
 				WebinosMessage webinosMessage = (WebinosMessage) gson.fromJson(message, c);

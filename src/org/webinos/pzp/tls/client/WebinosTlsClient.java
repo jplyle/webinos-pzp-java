@@ -6,6 +6,9 @@ package org.webinos.pzp.tls.client;
 import java.security.cert.X509Certificate;
 import java.util.Properties;
 
+import org.webinos.pzp.messaging.MessageConsumer;
+import org.webinos.pzp.messaging.MessagePool;
+
 
 /**
  * @author johl
@@ -14,7 +17,7 @@ import java.util.Properties;
 public abstract class WebinosTlsClient {
 
 	private Properties config;
-	
+
 	public abstract ConnexionConfigState getConfigurationState();
 	
 	protected Properties getConfiguration() {
@@ -33,7 +36,9 @@ public abstract class WebinosTlsClient {
 	
 	public abstract boolean isConfigured();
 
-	public abstract void connect() throws TlsClientException;
+	public boolean connect() throws TlsClientException {
+		return false;
+	}
 	
 	public abstract void disconnect();
 
@@ -45,5 +50,9 @@ public abstract class WebinosTlsClient {
 
 	public String getCSR() throws TlsClientException {
 		throw new TlsClientException("Unable to create CSR");
-	}	
+	}
+
+	public MessageConsumer getConsumer(MessagePool pool) {
+		return null;
+	}
 }

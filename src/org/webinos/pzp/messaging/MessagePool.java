@@ -8,6 +8,10 @@ import java.util.Iterator;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.webinos.pzp.Main;
 
 /**
  * @author johl
@@ -15,6 +19,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class MessagePool {
 
+	private final static Logger LOGGER = Logger.getLogger(MessagePool.class.getName());
+	
 	Queue<WebinosMessage> messageQueue = new ConcurrentLinkedQueue<WebinosMessage>();
 	Queue<WebinosMessage> unhandledMessages = new ConcurrentLinkedQueue<WebinosMessage>();
 	
@@ -61,7 +67,7 @@ public class MessagePool {
 			if (msg != null) {
 				if (!handleMessage(msg)) {
 					unhandledMessages.add(msg);
-					System.out.println("Could not find a processor for " + msg.getType());
+					LOGGER.log(Level.INFO, "Could not find a processor for " + msg.getType());
 				}
 			}
 		}

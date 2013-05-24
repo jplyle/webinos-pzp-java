@@ -3,6 +3,8 @@ package org.webinos.pzp.tls.client;
 import java.security.cert.X509Certificate;
 import java.util.Properties;
 
+import org.webinos.pzp.messaging.MessagePool;
+
 
 /**
  * @author johl
@@ -18,6 +20,8 @@ import java.util.Properties;
 public class TlsState {
 
 	private WebinosTlsClient client = null;
+
+	private MessagePool pool;
 
 	private static TlsState instance = null;
 
@@ -55,15 +59,18 @@ public class TlsState {
 	}
 	
 	public void connect() throws TlsClientException {
-		client.connect();
+		if ( client.connect() ) {
+			pool.addConsumer(client.getConsumer(pool));
+		}
 	}
 	
 	
-	private void loadClient(Properties config) throws TlsClientException {
+	private void loadClient(Properties config, MessagePool pool) throws TlsClientException {
 		if (!validateConfig(config)) {
 			throw new TlsClientException(
 					"Invalid configuration for TLS connection");
 		}
+		this.pool = pool;
 		WebinosTlsClient client = new InZoneTlsClient(config);
 		if (!client.isConfigured()) {
 			client = new ConfiguredTlsClient(config);
@@ -75,9 +82,9 @@ public class TlsState {
 		this.client = client;
 	}
 
-	public static void configure(Properties properties)
+	public void configure(Properties properties, MessagePool pool)
 			throws TlsClientException {
-		instance.loadClient(properties);
+		instance.loadClient(properties, pool);
 	}
 
 	public static TlsState getInstance() {

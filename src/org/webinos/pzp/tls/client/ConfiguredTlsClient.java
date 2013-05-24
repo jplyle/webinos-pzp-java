@@ -3,6 +3,7 @@ package org.webinos.pzp.tls.client;
 import java.security.cert.X509Certificate;
 import java.util.Properties;
 
+import org.webinos.pzp.messaging.MessagePool;
 import org.webinos.pzp.tls.certificates.CertificateManager;
 import org.webinos.pzp.tls.certificates.CertificateManagerException;
 
@@ -38,8 +39,8 @@ public class ConfiguredTlsClient extends WebinosTlsClient {
 	}
 
 	@Override
-	public void connect() throws TlsClientException {
-		throw new TlsClientException("Unable to connect: has not joined personal zone");
+	public boolean connect() {
+		return false;
 	}
 
 	@Override

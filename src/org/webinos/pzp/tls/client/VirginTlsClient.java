@@ -3,6 +3,8 @@ package org.webinos.pzp.tls.client;
 import java.security.cert.X509Certificate;
 import java.util.Properties;
 
+import org.webinos.pzp.messaging.MessagePool;
+
 
 public class VirginTlsClient extends WebinosTlsClient {
 
@@ -29,11 +31,6 @@ public class VirginTlsClient extends WebinosTlsClient {
 	public WebinosTlsClient newHubAddress(String address, int port) {
 		WebinosTlsClient replacement = new ConfiguredTlsClient(getConfiguration());
 		return replacement.newHubAddress(address, port);
-	}
-
-	@Override
-	public void connect() throws TlsClientException {
-		throw new TlsClientException("Not able to connect: no PZH details");
 	}
 
 	@Override

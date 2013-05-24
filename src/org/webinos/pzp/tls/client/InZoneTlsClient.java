@@ -18,6 +18,7 @@ import javax.net.ssl.TrustManager;
 
 import org.bouncycastle.crypto.tls.TlsClient;
 import org.bouncycastle.crypto.tls.TlsProtocolHandler;
+import org.webinos.pzp.messaging.MessagePool;
 
 public class InZoneTlsClient extends WebinosTlsClient {
 
@@ -50,11 +51,12 @@ public class InZoneTlsClient extends WebinosTlsClient {
 	}
 
 	@Override
-	public void connect() {
+	public boolean connect() {
 		// TODO Auto-generated method stub
 		TlsProtocolHandler handler = new TlsProtocolHandler(null,null);
 		TlsClient client;
 		
+		return false;
 	}
 
 	@Override

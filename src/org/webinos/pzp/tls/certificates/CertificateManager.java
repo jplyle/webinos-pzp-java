@@ -38,6 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
@@ -69,6 +71,7 @@ import org.bouncycastle.util.io.pem.PemObjectGenerator;
 import org.bouncycastle.util.io.pem.PemReader;
 import org.bouncycastle.util.io.pem.PemWriter;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
+import org.webinos.pzp.websocket.WebSocketMessageFactory;
 
 /**
  * @author johl
@@ -76,6 +79,8 @@ import org.bouncycastle.x509.X509V3CertificateGenerator;
  */
 public class CertificateManager {
 
+	private final static Logger LOGGER = Logger.getLogger(CertificateManager.class.getName()); 
+	
 	private static AlgorithmIdentifier sigAlgId = new DefaultSignatureAlgorithmIdentifierFinder()
 			.find("SHA1withRSA");
 	private static AlgorithmIdentifier digAlgId = new DefaultDigestAlgorithmIdentifierFinder()
@@ -414,19 +419,19 @@ public class CertificateManager {
 		try {
 			/*
 			 * 
-			 * masterKeys = createKeyPair(); System.out.println( toPemString(
+			 * masterKeys = createKeyPair(); LOGGER.log(Level.INFO,  toPemString(
 			 * convertBctoJcePublic(masterKeys.getPublic())) );
-			 * System.out.println( toPemString(
+			 * LOGGER.log(Level.INFO,  toPemString(
 			 * convertBctoJcePrivate(masterKeys.getPrivate())) );
-			 * System.out.println("Master keys: " + masterKeys); String csr =
-			 * createCSR(masterKeys); System.out.println("CSR: " + csr);
+			 * LOGGER.log(Level.INFO, "Master keys: " + masterKeys); String csr =
+			 * createCSR(masterKeys); LOGGER.log(Level.INFO, "CSR: " + csr);
 			 * X509CertificateHolder masterHolder =
 			 * createCertificate(PZP_COMMON_NAME, masterKeys.getPrivate(),
-			 * masterKeys.getPublic()); System.out.println( toPemString(
+			 * masterKeys.getPublic()); LOGGER.log(Level.INFO,  toPemString(
 			 * masterHolder) );
 			 * 
 			 * X509Certificate masterCert = convertBCtoJCECert(masterHolder);
-			 * System.out.println( toPemString( masterCert) );
+			 * LOGGER.log(Level.INFO,  toPemString( masterCert) );
 			 */
 			Security.addProvider(new BouncyCastleProvider());
 
@@ -437,11 +442,11 @@ public class CertificateManager {
 
 			cc.saveKeyStore(keyStore, keyStoreFile, "secret");
 
-			System.out.println(keyStore.toString());
+			LOGGER.log(Level.INFO, keyStore.toString());
 			Enumeration<String> aliases = keyStore.aliases();
 			while (aliases.hasMoreElements()) {
 				String alias = aliases.nextElement();
-				System.out.println("Alias: " + alias);
+				LOGGER.log(Level.INFO, "Alias: " + alias);
 
 			}
 
